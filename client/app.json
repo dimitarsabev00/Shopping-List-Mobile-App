@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "shopping-list-mobile-app",
-    "slug": "shopping-list-mobile-app",
+    "name": "shopping-list-app",
+    "slug": "shopping-list-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
