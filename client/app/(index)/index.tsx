@@ -1,6 +1,6 @@
 import { View, Text, Pressable, Platform, StyleSheet } from "react-native";
 import React from "react";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 
 const ICON_COLOR = "#007AFF";
@@ -9,7 +9,7 @@ const HomeScreen = () => {
   const renderHeaderRight = () => (
     <Pressable
       // onPress={handleNewListPress}
-      onPress={() => {}}
+      onPress={() => router.push("/list/new")}
       style={styles.headerButton}
     >
       <IconSymbol name="plus" color={ICON_COLOR} />
