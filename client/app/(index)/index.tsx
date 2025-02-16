@@ -19,7 +19,7 @@ const HomeScreen = () => {
   const renderHeaderLeft = () => (
     <Pressable
       // onPress={handleProfilePress}
-      onPress={() => {}}
+      onPress={() => router.push("/profile")}
       style={[styles.headerButton, styles.headerButtonLeft]}
     >
       <IconSymbol
