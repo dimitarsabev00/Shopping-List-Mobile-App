@@ -74,17 +74,26 @@ export default function AppIndexLayout() {
             ),
           }}
         />
-         <Stack.Screen
-                name="emoji-picker"
-                options={{
-                  presentation: "formSheet",
-                  headerLargeTitle: false,
-                  headerTitle: "Choose an emoji",
-                  sheetAllowedDetents: [0.5, 0.75, 1],
-                  sheetGrabberVisible: true,
-                }}
-              />
-              
+        <Stack.Screen
+          name="emoji-picker"
+          options={{
+            presentation: "formSheet",
+            headerLargeTitle: false,
+            headerTitle: "Choose an emoji",
+            sheetAllowedDetents: [0.5, 0.75, 1],
+            sheetGrabberVisible: true,
+          }}
+        />
+        <Stack.Screen
+          name="color-picker"
+          options={{
+            presentation: "formSheet",
+            headerLargeTitle: false,
+            headerTitle: "Choose a color",
+            sheetAllowedDetents: [0.5, 0.75, 1],
+            sheetGrabberVisible: true,
+          }}
+        />
       </Stack>
     </SignedIn>
   );
