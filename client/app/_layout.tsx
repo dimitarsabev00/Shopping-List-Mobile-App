@@ -9,6 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -42,8 +43,10 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Slot />
-          <StatusBar style="auto" />
+          <GestureHandlerRootView>
+            <Slot />
+            <StatusBar style="auto" />
+          </GestureHandlerRootView>
         </ThemeProvider>
       </ClerkLoaded>
     </ClerkProvider>
