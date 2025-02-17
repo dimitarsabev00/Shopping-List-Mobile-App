@@ -1,8 +1,9 @@
 import React from "react";
 import { useNetworkState } from "expo-network";
-import { Redirect, Stack } from "expo-router";
+import { Redirect, router, Stack } from "expo-router";
 import { Alert } from "react-native";
 import { SignedIn, useUser } from "@clerk/clerk-expo";
+import { Button } from "@/components/ui/button";
 
 export default function AppIndexLayout() {
   const { user } = useUser();
@@ -58,6 +59,19 @@ export default function AppIndexLayout() {
             sheetAllowedDetents: [0.75, 1],
             sheetGrabberVisible: true,
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="list/new/scan"
+          options={{
+            presentation: "fullScreenModal",
+            headerLargeTitle: false,
+            headerTitle: "Scan QR code",
+            headerLeft: () => (
+              <Button variant="ghost" onPress={() => router.back()}>
+                Cancel
+              </Button>
+            ),
           }}
         />
       </Stack>
