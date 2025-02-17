@@ -9,6 +9,7 @@ import Button from "@/components/ui/button";
 import TextInput from "@/components/ui/text-input";
 // Constants & Utils
 import { backgroundColors, emojies } from "@/constants/Colors";
+import { useJoinShoppingListCallback } from "@/stores/ShoppingListsStore";
 
 const isValidUUID = (id: string | null) => {
   if (!id) return false;
@@ -22,6 +23,7 @@ export default function NewListScreen() {
   const { listId: listIdParam } = params as { listId: string | undefined };
 
   const router = useRouter();
+  const joinShoppingListCallback = useJoinShoppingListCallback();
   const [listId, setListId] = useState<string | null>(listIdParam);
   const isValidListId = useMemo(() => isValidUUID(listId), [listId]);
 
@@ -46,6 +48,7 @@ export default function NewListScreen() {
 
   const handleJoinList = () => {
     if (listId && isValidUUID(listId)) {
+      joinShoppingListCallback(listId);
 
       // dismissTo method is not working due to a bug in react-native-screens
       router.dismiss();
@@ -81,7 +84,7 @@ export default function NewListScreen() {
           <Button onPress={() => handleDismissTo("/list/new/create")}>
             Create new list
           </Button>
-
+    
           <View style={styles.divider}>
             <View style={styles.line} />
             <ThemedText type="default" style={styles.orText}>
@@ -96,6 +99,7 @@ export default function NewListScreen() {
               value={listId}
               onChangeText={setListId}
               onSubmitEditing={(e) => {
+                joinShoppingListCallback(e.nativeEvent.text);
               }}
               containerStyle={{ marginBottom: 0 }}
             />
