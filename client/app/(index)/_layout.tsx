@@ -6,6 +6,7 @@ import { SignedIn, useUser } from "@clerk/clerk-expo";
 import { Button } from "@/components/ui/button";
 import { ListCreationProvider } from "@/contexts/ListCreationContext";
 import { Provider as TinyBaseProvider } from "tinybase/ui-react";
+import ShoppingListsStore from "@/stores/ShoppingListsStore";
 
 export default function AppIndexLayout() {
   const { user } = useUser();
@@ -30,6 +31,7 @@ export default function AppIndexLayout() {
   return (
     <SignedIn>
       <TinyBaseProvider>
+      <ShoppingListsStore />
         <ListCreationProvider>
           <Stack
             screenOptions={{
