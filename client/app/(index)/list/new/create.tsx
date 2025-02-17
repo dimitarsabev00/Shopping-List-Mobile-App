@@ -1,24 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Stack, useRouter } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import { BodyScrollView } from "@/components/ui/BodyScrollView";
 import Button from "@/components/ui/button";
 import TextInput from "@/components/ui/text-input";
-import { appleBlue } from "@/constants/Colors";
+import { appleBlue, backgroundColors, emojies } from "@/constants/Colors";
+import { useListCreation } from "@/contexts/ListCreationContext";
 
 export default function CreateListScreen() {
   const [listName, setListName] = useState("");
   const [listDescription, setListDescription] = useState("");
+  const { selectedEmoji, setSelectedEmoji, selectedColor, setSelectedColor } =
+    useListCreation();
 
   const router = useRouter();
+
+  useEffect(() => {
+    setSelectedEmoji(emojies[Math.floor(Math.random() * emojies.length)]);
+    setSelectedColor(
+      backgroundColors[Math.floor(Math.random() * backgroundColors.length)]
+    );
+
+    // Cleanup function to reset context when unmounting
+    return () => {
+      setSelectedEmoji("");
+      setSelectedColor("");
+    };
+  }, []);
 
   const handleCreateList = () => {
     if (!listName) {
       return;
     }
+
+    
   };
 
   const handleCreateTestLists = () => {
+    const testListNames = [
+      "Grocery Shopping",
+      "Weekend BBQ",
+      "Party Supplies",
+      "Office Supplies",
+      "Camping Trip",
+      "Holiday Gifts",
+      "Home Improvement",
+      "School Supplies",
+      "Birthday Party",
+      "Household Items",
+    ];
+
+    const testEmojis = [
+      "🛒",
+      "🍖",
+      "🎉",
+      "📎",
+      "⛺️",
+      "🎁",
+      "🔨",
+      "📚",
+      "🎂",
+      "🏠",
+    ];
+   
+
     // Navigate back to the main list view
     router.replace("/");
   };
@@ -47,15 +92,15 @@ export default function CreateListScreen() {
           />
           <Link
             href={{ pathname: "/emoji-picker" }}
-            style={[styles.emojiButton, { borderColor: "blue" }]}
+            style={[styles.emojiButton, { borderColor: selectedColor }]}
           >
             <View style={styles.emojiContainer}>
-              <Text>"☺️"</Text>
+              <Text>{selectedEmoji}</Text>
             </View>
           </Link>
           <Link
             href={{ pathname: "/color-picker" }}
-            style={[styles.colorButton, { borderColor: "blue" }]}
+            style={[styles.colorButton, { borderColor: selectedColor }]}
           >
             <View style={styles.colorContainer}>
               <View
@@ -63,7 +108,7 @@ export default function CreateListScreen() {
                   width: 24,
                   height: 24,
                   borderRadius: 100,
-                  backgroundColor: "blue",
+                  backgroundColor: selectedColor,
                 }}
               />
             </View>
