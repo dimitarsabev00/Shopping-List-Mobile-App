@@ -6,6 +6,7 @@ import Button from "@/components/ui/button";
 import TextInput from "@/components/ui/text-input";
 import { appleBlue, backgroundColors, emojies } from "@/constants/Colors";
 import { useListCreation } from "@/contexts/ListCreationContext";
+import { useAddShoppingListCallback } from "@/stores/ShoppingListsStore";
 
 export default function CreateListScreen() {
   const [listName, setListName] = useState("");
@@ -14,6 +15,7 @@ export default function CreateListScreen() {
     useListCreation();
 
   const router = useRouter();
+  const useAddShoppingList = useAddShoppingListCallback();
 
   useEffect(() => {
     setSelectedEmoji(emojies[Math.floor(Math.random() * emojies.length)]);
@@ -33,7 +35,17 @@ export default function CreateListScreen() {
       return;
     }
 
-    
+    const listId = useAddShoppingList(
+      listName,
+      listDescription,
+      selectedEmoji,
+      selectedColor
+    );
+
+    router.replace({
+      pathname: "/list/[listId]",
+      params: { listId },
+    });
   };
 
   const handleCreateTestLists = () => {
@@ -62,7 +74,16 @@ export default function CreateListScreen() {
       "🎂",
       "🏠",
     ];
-   
+    const testColors = Object.values(backgroundColors).slice(0, 10);
+
+    testListNames.forEach((name, index) => {
+      useAddShoppingList(
+        name,
+        `This is a test list for ${name}`,
+        testEmojis[index],
+        testColors[index]
+      );
+    });
 
     // Navigate back to the main list view
     router.replace("/");
