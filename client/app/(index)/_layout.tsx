@@ -31,7 +31,7 @@ export default function AppIndexLayout() {
   return (
     <SignedIn>
       <TinyBaseProvider>
-      <ShoppingListsStore />
+        <ShoppingListsStore />
         <ListCreationProvider>
           <Stack
             screenOptions={{
@@ -78,6 +78,16 @@ export default function AppIndexLayout() {
                     Cancel
                   </Button>
                 ),
+              }}
+            />
+            <Stack.Screen
+              name="list/[listId]/product/new"
+              options={{
+                presentation: "formSheet",
+                sheetAllowedDetents: [0.8, 1],
+                sheetGrabberVisible: true,
+                headerLargeTitle: false,
+                headerTitle: "Add product",
               }}
             />
             <Stack.Screen
