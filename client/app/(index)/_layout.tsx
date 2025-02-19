@@ -81,6 +81,16 @@ export default function AppIndexLayout() {
               }}
             />
             <Stack.Screen
+              name="list/[listId]/edit"
+              options={{
+                presentation: "formSheet",
+                sheetAllowedDetents: [0.5, 0.75, 1],
+                sheetGrabberVisible: true,
+                headerLargeTitle: false,
+                headerTitle: "Edit list",
+              }}
+            />
+            <Stack.Screen
               name="list/[listId]/product/new"
               options={{
                 presentation: "formSheet",
