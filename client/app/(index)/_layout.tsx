@@ -110,6 +110,16 @@ export default function AppIndexLayout() {
               }}
             />
             <Stack.Screen
+              name="list/[listId]/product/[productId]"
+              options={{
+                presentation: "formSheet",
+                sheetAllowedDetents: [0.75, 1],
+                sheetGrabberVisible: true,
+                headerLargeTitle: false,
+                headerTitle: "Details",
+              }}
+            />
+            <Stack.Screen
               name="emoji-picker"
               options={{
                 presentation: "formSheet",
